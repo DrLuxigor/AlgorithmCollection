@@ -7,12 +7,12 @@ int main() {
 
 void radixSortBinary(int length, int* array) {
     if(length < 2)
-        return array
+        return array;
 
     int max = array[0];
     for(int i = 0; i < length; i++) {
         if(array[i] > max)
-            max = array[i]
+            max = array[i];
     }
 
     int msbPos = 0;
