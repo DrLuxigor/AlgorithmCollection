@@ -26,6 +26,9 @@ void radixSortBinary(const unsigned int length, int* array) {
         msbPos++;
     }
 
+    //One could assume that the there is roughly an equal amount of numbers in each bucket every time
+    //Allocating half the size of the array for each bucket + margin and reallocations if neccessarry
+    //would safe a lot of space
     int* zeroBucket = malloc(sizeof(int) * length);
     int* onesBucket = malloc(sizeof(int) * length);
     for (int bitPos = 0; bitPos < msbPos; bitPos++) {
