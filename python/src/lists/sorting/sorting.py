@@ -1,18 +1,15 @@
-import numpy as np
+import time
+import random
 
 
-def radix_sort_lsb(array):
+def radix_sort_binary(array):
     """
     Radix sort algorithm for integers
-    Time: O(n)
-    //n to find the maximum +
-    //n * position of msb +
-    //fraction of n to find first negative number
-    //fraction of n to reverse the negative number list
-    Additional Space: O(n)
+    Result: 10.000.000 numbers from 0 to 32767: 27 seconds
     :param array: array to sort
     :return: ordered array
     """
+    start = time.time()
     max_num = max(array)
     msb_pos = max_num.bit_length()
 
@@ -32,10 +29,11 @@ def radix_sort_lsb(array):
             negatives = array[i:]
             array = negatives + positives
             break
-
+    end = time.time()
+    print(f'Elapsed time: {end - start}s')
     return array
 
 
-arr = [170, 45, 75, 90, -3, 802, 24, 2, 66, -1, -2]
-sorted_arr = radix_sort_lsb(arr)
-print("Sorted array:", sorted_arr)
+length = 10000000
+arr = [random.randint(0, 32767) for _ in range(length)]
+sorted_arr = radix_sort_binary(arr)

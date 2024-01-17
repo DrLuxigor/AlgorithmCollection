@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 /**
  * \brief sorts an array of positive integers from smallest to largest.
  * Negative values will at the end of the array, also from smallest to largest
+ * Result: 10.000.000 numbers from 0 to 32767: 1.259 seconds
  * \param length length of the array
  * \param array array to be sorted
  */
-void radixSortBinary(const int length, int* array) {
+void radixSortBinary(const unsigned int length, int* array) {
+    printf("Sorting %d numbers!\n", length);
+    const clock_t startTime = clock();
     if (length < 2)
         return;
 
@@ -46,16 +50,20 @@ void radixSortBinary(const int length, int* array) {
     }
     free(zeroBucket);
     free(onesBucket);
+    const clock_t endTime = clock();
+    const double ms = (double)(endTime - startTime) / CLOCKS_PER_SEC;
+    printf("Elapsed Time: %fs\n", ms);
 }
 
 
 int main() {
-    const int len = 11;
-    int numbers[] = {170, 45, 75, 90, -3, 802, 24, 2, 66, -1, -2};
-
-    radixSortBinary(len, numbers);
+    srand(time(NULL));
+    const unsigned int len = 10000000;
+    int* arr = malloc(sizeof(int) * len);
     for (int i = 0; i < len; ++i) {
-        printf("%d ", numbers[i]);
+        arr[i] = rand();
     }
+    radixSortBinary(len, arr);
+    free(arr);
     return 0;
 }
