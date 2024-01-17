@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-    return 0
+    return 0;
 }
 
 void radixSortBinary(int length, int* array) {
