@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int main() {
+    int[] a = int[5];
     return 0;
 }
 
