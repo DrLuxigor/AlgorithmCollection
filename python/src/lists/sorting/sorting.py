@@ -30,7 +30,7 @@ def radix_sort_binary(array):
             array = negatives + positives
             break
     end = time.time()
-    print(f'Elapsed time: {end - start}s')
+    print(f'Radix Sort, Elapsed time: {end - start}s')
     return array
 
 
@@ -41,6 +41,7 @@ def bubble_sort(array):
     :param array: array to be sorted
     :return: array in order
     """
+    start = time.time()
     swapped = True
     while swapped:
         swapped = False
@@ -50,6 +51,8 @@ def bubble_sort(array):
                 temp = array[i - 1]
                 array[i - 1] = array[i]
                 array[i] = temp
+    end = time.time()
+    print(f'Bubble Sort, Elapsed time: {end - start}s')
     return array
 
 
@@ -60,6 +63,7 @@ def selection_sort(array):
     :param array:
     :return:
     """
+    start = time.time()
     for i in range(len(array)):
         min_index = i
         for j in range(i, len(array)):
@@ -68,6 +72,8 @@ def selection_sort(array):
         temp = array[i]
         array[i] = array[min_index]
         array[min_index] = temp
+    end = time.time()
+    print(f'Selection Sort, Elapsed time: {end - start}s')
     return array
 
 
@@ -78,6 +84,7 @@ def insertion_sort(array):
     :param array:
     :return:
     """
+    start = time.time()
     for i in range(1, len(array)):
         key = array[i]
         j = i - 1
@@ -85,6 +92,8 @@ def insertion_sort(array):
             array[j + 1] = array[j]
             j = j - 1
         array[j + 1] = key
+    end = time.time()
+    print(f'Insertion Sort, Elapsed time: {end - start}s')
     return array
 
 
@@ -120,13 +129,18 @@ def merge(left, right):
 
 def counting_sort(array, k):
     """
+    ^_^_^_^_^_^
+    | crown  | Winner, 100 Million numbers 0 through 32767 in 10 seconds in PYTHON!
+    ----------
     Time complexity O(n + k) where k is the number of discrete options in array
     additional space complexity O(k) if original array is "freed" before result is generated from counts
-    alternatively write array in place while looping through counters
+    alternatively write on array in place while looping through counters
+    Use a map for unpredictable but range limited sets? sort keys, add values, would work with objects as well
     :param array:
     :param k:
     :return:
     """
+    start = time.time()
     counter = [0] * k
     for i in range(len(array)):
         counter[array[i]] += 1
@@ -134,13 +148,20 @@ def counting_sort(array, k):
     result = []
     for i in range(k):
         result += [i] * counter[i]
-
+    end = time.time()
+    print(f'Counting Sort, Elapsed time: {end - start}s')
     return result
 
 
 if '__main__' == __name__:
-    length = 100
+    length = 100000000
     arr = [random.randint(0, 32767) for _ in range(length)]
-    sorted_arr = counting_sort(arr, 32767)
-    print(sorted_arr)
-    print(len(sorted_arr))
+    #sorted_arr = radix_sort_binary(arr.copy())
+    #sorted_arr = bubble_sort(arr.copy())
+    #sorted_arr = selection_sort(arr.copy())
+    #sorted_arr = insertion_sort(arr.copy())
+    #start = time.time()
+    #sorted_arr = merge_sort(arr.copy())
+    #end = time.time()
+    #print(f'Merge Sort, Elapsed time: {end - start}s')
+    sorted_arr = counting_sort(arr.copy(), 32768)
