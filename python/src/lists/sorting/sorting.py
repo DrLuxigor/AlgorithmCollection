@@ -100,7 +100,7 @@ def insertion_sort(array):
 def merge_sort(array):
     """
     Time complexity O(n log n)
-    Additional space complexity O(1)
+    Additional space complexity O(n)
     :param array:
     :return:
     """
