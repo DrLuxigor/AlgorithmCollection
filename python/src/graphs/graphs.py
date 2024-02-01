@@ -9,6 +9,9 @@ class Graph:
             return ids
         return [n for n in self.nodes if n.id in ids]
 
+    def min_spanning_tree(self):
+        return
+
 
 class Node:
     def __init__(self, node_id, node_name):
